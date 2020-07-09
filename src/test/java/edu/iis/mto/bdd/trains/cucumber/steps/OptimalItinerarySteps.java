@@ -21,15 +21,16 @@ public class OptimalItinerarySteps {
 
     @Zakładając("^pociągi linii \"(.*)\" z \"(.*)\" odjeżdżają ze stacji \"(.*)\" do \"(.*)\" o$")
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
-            @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
+    @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
         TimetableService timetableService = new InMemoryTimetableService();
+        itineraryService = new ItineraryServiceImplementation(new InMemoryTimetableService());
         interinaryService = new InterinaryServiceImpl(timetableService);
     }
 
     @Gdy("^chcę podróżować z \"([^\"]*)\" do \"([^\"]*)\" o (.*)$")
     public void whenIWantToTravel(String departure, String destination,
-            @Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
-        trainsTimes = interinaryService.findNextDepartures(departure,destination,startTime);
+    @Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
+        trainsTimes = itineraryService.findNextDepartures(departure, destination, startTime);
     }
 
     @Wtedy("^powinienem uzyskać informację o pociągach o:$")

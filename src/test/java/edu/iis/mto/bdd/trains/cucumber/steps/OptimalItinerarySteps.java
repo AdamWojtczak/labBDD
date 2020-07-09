@@ -2,10 +2,7 @@ package edu.iis.mto.bdd.trains.cucumber.steps;
 
 import java.util.List;
 
-import edu.iis.mto.bdd.trains.services.InMemoryTimetableService;
-import edu.iis.mto.bdd.trains.services.InterinaryService;
-import edu.iis.mto.bdd.trains.services.InterinaryServiceImpl;
-import edu.iis.mto.bdd.trains.services.TimetableService;
+import edu.iis.mto.bdd.trains.services.*;
 import org.joda.time.LocalTime;
 
 import cucumber.api.PendingException;
@@ -18,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OptimalItinerarySteps {
 
+    private ItineraryService itineraryService;
     List<LocalTime> trainsTimes;
     InterinaryService interinaryService;
 

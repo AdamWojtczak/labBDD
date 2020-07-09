@@ -23,7 +23,7 @@ public class OptimalItinerarySteps {
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
     @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
         TimetableService timetableService = new InMemoryTimetableService();
-        itineraryService = new ItineraryServiceImplementation(new InMemoryTimetableService());
+        itineraryService = new ItineraryServiceImplementation(new InMemoryTimetableService(), 30);
         interinaryService = new InterinaryServiceImpl(timetableService);
     }
 
